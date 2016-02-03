@@ -7,7 +7,7 @@
 #' @param ... Additonal arguments passed on to \code{.f}.
 #' @export
 #' @examples
-#' # Functions are a functor
+#' # Functions are functors
 #' add1 <- function(x) x + 1
 #' add2 <- function(x) x + 2
 #'

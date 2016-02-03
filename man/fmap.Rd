@@ -30,7 +30,7 @@ fmap(.m, .f, ...)
 Any object with a \code{fmap} method is called a \code{functor}.
 }
 \examples{
-# Functions are a functor
+# Functions are functors
 add1 <- function(x) x + 1
 add2 <- function(x) x + 2
 
