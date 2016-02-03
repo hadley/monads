@@ -14,3 +14,5 @@ Imports:
     purrr
 RoxygenNote: 5.0.1
 Suggests: shiny
+URL: https://github.com/hadley/monads
+BugReports: https://github.com/hadley/monads/issues
