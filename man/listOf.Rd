@@ -17,5 +17,8 @@ A list where all elements are the same class.
 x <- listOf(1L, 2L, 4:10)
 double <- function(x) x * 2
 x \%>>\% double()
+
+x \%>>\% function(x) list(x, x)
+x \%>+\% function(x) list(x, x)
 }
 

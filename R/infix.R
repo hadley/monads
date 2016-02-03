@@ -1,11 +1,11 @@
-#' Infix fmap: allows you to apply an arbitrary function to a wrapped object.
+#' Infix fmap and bind.
 #'
 #' This works like magrittr's \code{\%>\%}, but uses fmap to unwrap, apply,
 #' and then rewrap the object.
 #'
 #' @param lhs A monad
 #' @param rhs Call to invoke.
-#' @rdname infix-fmap
+#' @rdname infix
 #' @export
 #' @examples
 #' if (require("shiny")) {
@@ -20,16 +20,24 @@
 #' maybe(10) %>>% function(x) x * 2
 #' }
 "%>>%" <- function(lhs, rhs) {
-  lhs <- substitute(lhs)
-  rhs <- substitute(rhs)
+  call <- inline_call(quote(fmap), substitute(lhs), substitute(rhs))
+  eval(call, parent.frame())
+}
 
+#' @export
+#' @rdname infix
+"%>+%" <- function(lhs, rhs) {
+  call <- inline_call(quote(bind), substitute(lhs), substitute(rhs))
+  eval(call, parent.frame())
+}
+
+inline_call <- function(f, lhs, rhs) {
   if (singular_form(rhs)) {
-    call_fmap <- as.call(c(quote(fmap), lhs, rhs))
+    call <- as.call(c(f, lhs, rhs))
   } else {
-    call_fmap <- as.call(c(quote(fmap), lhs, rhs[[1]], as.list(rhs[-1])))
+    call <- as.call(c(f, lhs, rhs[[1]], as.list(rhs[-1])))
   }
-
-  eval(call_fmap, parent.frame())
+  call
 }
 
 singular_form <- function(x) {

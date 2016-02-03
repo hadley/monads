@@ -28,6 +28,15 @@ fmap.maybe <- function(.m, .f, ...) {
 }
 
 #' @export
+bind.maybe <- function(.m, .f, ...) {
+  if (is.null(.m[[1]])) {
+    return(.m)
+  }
+
+  .f(.m[[1]], ...)
+}
+
+#' @export
 print.maybe <- function(x, ...) {
   if (is.null(x[[1]])) {
     cat("<NOTHING>\n")

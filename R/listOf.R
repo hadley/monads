@@ -7,6 +7,9 @@
 #' x <- listOf(1L, 2L, 4:10)
 #' double <- function(x) x * 2
 #' x %>>% double()
+#'
+#' x %>>% function(x) list(x, x)
+#' x %>+% function(x) list(x, x)
 listOf <- function(...) {
   x <- list(...)
 
@@ -21,6 +24,12 @@ listOf <- function(...) {
 #' @export
 fmap.listOf <- function(.m, .f, ...) {
   structure(purrr::map(.m, .f, ...), class = "listOf")
+}
+
+#' @export
+bind.listOf <- function(.m, .f, ...) {
+  out <- purrr::map(.m, .f, ...)
+  structure(purrr::flatten(out), class = "listOf")
 }
 
 #' @export
