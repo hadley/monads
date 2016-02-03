@@ -21,6 +21,11 @@ options(shiny.suppressMissingContextError = TRUE)
 r <- reactive(iris)
 r2 <- r \%>>\% head(5)
 r2()
+
+double <- function(x) x * 2
+maybe(10) \%>>\% double
+maybe(10) \%>>\% double()
+maybe(10) \%>>\% function(x) x * 2
 }
 }
 
