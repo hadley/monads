@@ -9,18 +9,6 @@ fmap <- function(.m, .f, ...) {
 }
 
 #' @export
-fmap.default <- function(.m, .f, ...) {
-  .f <- purrr::as_function(.f)
-  .f(.m, ...)
-}
-
-#' @export
-fmap.list_of <- function(.m, .f, ...) {
-  .f <- purrr::as_function(.f)
-  purrr::map(.m, .f, ...)
-}
-
-#' @export
 fmap.reactive <- function(.m, .f, ...) {
   .f <- purrr::as_function(.f)
   shiny::reactive(.f(.m(), ...))
