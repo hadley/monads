@@ -6,6 +6,10 @@ fmap.reactive <- function(.m, .f, ...) {
 
 #' @export
 bind.reactive <- function(.m, .f, ...) {
-  .f <- purrr::as_function(.f)
-  .f(.m(), ...)
+  join(fmap(.m, .f, ...))
+}
+
+#' @export
+join.reactive <- function(m) {
+  reactive(m()())
 }
