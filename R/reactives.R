@@ -11,5 +11,5 @@ bind.reactive <- function(.m, .f, ...) {
 
 #' @export
 join.reactive <- function(.m) {
-  reactive(.m()())
+  shiny::reactive(.m()())
 }

@@ -7,6 +7,10 @@
 logger(value, log = character())
 }
 \arguments{
+\item{value}{Value with logging context}
+
+\item{log}{Character vector of logged values.}
+
 \item{...}{Elements to combine into a list. All elements must be the
 same type.}
 }

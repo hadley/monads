@@ -1,5 +1,7 @@
 #' A list where all elements are the same class.
 #'
+#' @param value Value with logging context
+#' @param log Character vector of logged values.
 #' @param ... Elements to combine into a list. All elements must be the
 #'   same type.
 #' @export
@@ -26,6 +28,11 @@ fmap.logger <- function(.m, .f, ...) {
 bind.logger <- function(.m, .f, ...) {
   out <- .f(.m$value, ...)
   logger(out$value, c(out$log, .m$log))
+}
+
+#' @export
+join.logger <- function(.m) {
+  logger(.m$value$value, c(.m$value$log, .m$log))
 }
 
 #' @export

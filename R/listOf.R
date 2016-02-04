@@ -29,7 +29,14 @@ fmap.listOf <- function(.m, .f, ...) {
 #' @export
 bind.listOf <- function(.m, .f, ...) {
   out <- purrr::map(.m, .f, ...)
-  structure(purrr::flatten(out), class = "listOf")
+  stopifnot(is.list(out))
+
+  join.listOf(out)
+}
+
+#' @export
+join.listOf <- function(.m) {
+  structure(purrr::flatten(.m), class = "listOf")
 }
 
 #' @export
