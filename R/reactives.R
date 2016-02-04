@@ -10,6 +10,6 @@ bind.reactive <- function(.m, .f, ...) {
 }
 
 #' @export
-join.reactive <- function(m) {
-  reactive(m()())
+join.reactive <- function(.m) {
+  reactive(.m()())
 }
