@@ -37,5 +37,5 @@ bind <- function(.m, .f, ...) {
 #' @rdname monad-generics
 #' @export
 join <- function(.m) {
-  UseMethod("bind")
+  UseMethod("join")
 }
