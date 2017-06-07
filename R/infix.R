@@ -20,14 +20,14 @@
 #' maybe(10) %>>% function(x) x * 2
 #' }
 "%>>%" <- function(lhs, rhs) {
-  call <- inline_call(quote(fmap), substitute(lhs), substitute(rhs))
+  call <- inline_call(quote(monads::fmap), substitute(lhs), substitute(rhs))
   eval(call, parent.frame())
 }
 
 #' @export
 #' @rdname infix
 "%>+%" <- function(lhs, rhs) {
-  call <- inline_call(quote(bind), substitute(lhs), substitute(rhs))
+  call <- inline_call(quote(monads::bind), substitute(lhs), substitute(rhs))
   eval(call, parent.frame())
 }
 
